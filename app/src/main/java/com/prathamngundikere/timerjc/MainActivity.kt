@@ -92,20 +92,20 @@ fun Timer(
             value = currentTime / totalTime.toFloat()
         }
     }
-    Box (
+    Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .onSizeChanged {
                 size = it
             }
     ) {
-        Canvas(modifier = modifier){
+        Canvas(modifier = modifier) {
             drawArc(
                 color = inactiveBarColor,
                 startAngle = -215f,
                 sweepAngle = 250f,
                 useCenter = false,
-                size = Size(size.width.toFloat(),size.height.toFloat()),
+                size = Size(size.width.toFloat(), size.height.toFloat()),
                 style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
             )
             drawArc(
@@ -113,7 +113,7 @@ fun Timer(
                 startAngle = -215f,
                 sweepAngle = 250f * value,
                 useCenter = false,
-                size = Size(size.width.toFloat(),size.height.toFloat()),
+                size = Size(size.width.toFloat(), size.height.toFloat()),
                 style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
             )
             val center = Offset(size.width / 2f, size.height / 2f)
@@ -122,7 +122,7 @@ fun Timer(
             val a = cos(beta) * r
             val b = sin(beta) * r
             drawPoints(
-                listOf(Offset( center.x + a,center.y + b)),
+                listOf(Offset(center.x + a, center.y + b)),
                 pointMode = PointMode.Points,
                 color = handleColor,
                 strokeWidth = (strokeWidth * 3f).toPx(),
@@ -144,12 +144,11 @@ fun Timer(
                     isTimerRunning = !isTimerRunning
                 }
             },
-            modifier = modifier
-                .align(Alignment.BottomCenter),
+            modifier = Modifier.align(Alignment.BottomCenter),
             colors = ButtonDefaults.buttonColors(
-                containerColor = if (!isTimerRunning || currentTime <= 0L){
+                containerColor = if (!isTimerRunning || currentTime <= 0L) {
                     Color.Green
-                }else{
+                } else {
                     Color.Red
                 }
             )
